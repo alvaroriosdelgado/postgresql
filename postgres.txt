@@ -1,0 +1,43 @@
+1.- CREATE DATABASE call_list;
+
+2.- CREATE TABLE users(id int PRIMARY KEY, first_name varchar(50), email varchar(50));
+
+3.- INSERT TO users (first_name, email) VALUES ('Carlos', 'carlos@jue.cl');
+
+4.- INSERT TO users (first_name, email) VALUES ('Laura', 'laura@jue.cl');
+
+5.- CREATE TABLE calls(id SERIAL PRIMARY KEY, phone int, date int, user_id int REFERENCES users(id));
+
+6.- ALTER TABLE users ADD COLUMN last_name varchar(50);
+
+7.- UPDATE users SET last_name = 'jue' WHERE first_name = 'Carlos';
+
+8.- UPDATE users SET last_name = 'juesu' WHERE first_name = 'Laura';
+
+9.- call_list=# INSERT INTO calls (phone, date, user_id) VALUES (67891234, 14082018, 3);
+    INSERT 0 1
+    call_list=# INSERT INTO calls (phone, date, user_id) VALUES (78912345, 14082018, 3);
+    INSERT 0 1
+    call_list=# INSERT INTO calls (phone, date, user_id) VALUES (89123456, 14082018, 3);
+    INSERT 0 1
+    call_list=# INSERT INTO calls (phone, date, user_id) VALUES (91234567, 14082018, 3);
+    INSERT 0 1
+    call_list=# INSERT INTO calls (phone, date, user_id) VALUES (98765432, 14082018, 3);
+    INSERT 0 1
+    call_list=# INSERT INTO calls (phone, date, user_id) VALUES (87654321, 14082018, 3);
+    INSERT 0 1
+
+10.- call_list=# INSERT INTO calls (phone, date, user_id) VALUES (123455678, 14082018, 2);
+     INSERT 0 1
+     call_list=# INSERT INTO calls (phone, date, user_id) VALUES (23456789, 14082018, 2);
+     INSERT 0 1
+     call_list=# INSERT INTO calls (phone, date, user_id) VALUES (34567891, 14082018, 2);
+     INSERT 0 1
+     call_list=# INSERT INTO calls (phone, date, user_id) VALUES (45678912, 14082018, 2);
+     INSERT 0 1
+
+11.- INSERT INTO users (first_name, email, last_name) VALUES ('Alvaro', 'alvaro@gmail.com', 'Rios');
+
+12.- SELECT first_name, count(first_name) FROM users INNER JOIN calls ON (users.id = calls.user_id) GROUP BY first_name;
+
+13.- SELECT * FROM users INNER JOIN calls ON (users.id = calls.user_id) WHERE first_name = 'Carlos' ORDER BY date DESC;
